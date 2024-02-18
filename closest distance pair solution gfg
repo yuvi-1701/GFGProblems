@@ -1,0 +1,62 @@
+
+/**************************************
+    
+    Following is the point class
+    
+    class point {
+		int x;
+		int y;
+	
+		point(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+	 }
+  
+ **************************************/
+
+public class Solution {
+	
+	public static long closestPair(point coordinates[], int n) {
+		// write your code here
+		long minDist = Long.MAX_VALUE;
+		long num1;
+		long num2;
+		long num3;
+		long num4;
+		long result;
+
+		for(int i=0; i<n-1; i++){
+			point slow = coordinates[i];
+			for(int j=i+1; j<n; j++){
+				point fast = coordinates[j];
+				num1 = slow.x;
+				num2 = slow.y;
+				num3 = fast.x;
+				num4 = fast.y;
+				result = calculateDistance(num1,num2,num3,num4);
+				if(result < minDist){
+					minDist = result;
+				}
+			}
+		}
+		
+		return minDist;
+	}
+
+	private static long calculateDistance(long num1, long num2, long num3, long num4){
+		long distance;
+
+		long xAfterSubtract = num1 - num3;
+		long yAfterSubtract = num2 - num4;
+
+		long squareX = (long) Math.pow(xAfterSubtract, 2);
+		long squareY = (long) Math.pow(yAfterSubtract, 2);
+
+		distance = squareX + squareY;
+
+		return distance;
+
+	}
+	
+}
